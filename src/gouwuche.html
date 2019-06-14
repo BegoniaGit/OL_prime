@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="order by dede58.com"/>
+    <title>我的订单</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+<header>
+    <div class="top center">
+        <div class="left fl">
+            <ul>
+                <li><a href="./index.html">首页</a></li>
+
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div id="not_login" class="right fr">
+            <div class="gouwuche fr"><a href="./person_center/self_info.html">个人中心</a></div>
+            <div class="fr">
+                <ul>
+                    <li><a href="./login.html" target="_blank">登录</a></li>
+                    <li>|</li>
+                    <li><a href="./register.html" target="_blank">注册</a></li>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="had_login" class="right fr">
+            <div class="gouwuche fr"><a href="./person_center/self_info.html">个人中心</a></div>
+            <div class="fr">
+                <ul>
+                    <li id="myProfile"></li>
+                    <li><a id='userName' href="./person_center/self_info.html" target="_blank"></a></li>
+                    <li>|</li>
+                    <li><a href="./login.html" target="_blank">注销</a></li>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
+
+<!-- start banner_x -->
+<div class="banner_x center">
+
+    </br>
+    <div class="wdgwc fl ml40">我的订单</div>
+    <div class="wxts fl ml20">温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</div>
+    <div class="dlzc fr">
+
+
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="xiantiao"></div>
+<div class="gwcxqbj">
+    <div class="gwcxd center">
+        <div class="top2 center">
+            <div class="sub_top fl">
+                <!--<input type="checkbox" value="quanxuan" class="quanxuan"/>全选-->
+            </div>
+            <div class="sub_top fl">商品名称</div>
+            <div class="sub_top fl">商品详情</div>
+            <div class="sub_top fr">操作</div>
+            <div class="clear"></div>
+        </div>
+        <div id="lis">
+
+        </div>
+    </div>
+    <div class="jiesuandan mt20 center">
+        <div class="tishi fl ml20">
+            <ul>
+                <li><a href="./index.html">继续购物</a></li>
+                <li>|</li>
+                <li>共<span>1</span>件商品，已选择<span>1</span>件</li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="jiesuan fr">
+            <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan" onclick="submitOrder()" value="确认购买"/></div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+
+<!-- footer -->
+<footer class="myfooter">
+    <span>copyright @ 2018 online</span>
+</footer>
+
+</body>
+<script src="js/crabapple.js" type="text/javascript"></script>
+<script>
+    if (getCookie('userId') != null) {
+        document.getElementById('userName').innerText = getCookie('userName')
+        document.getElementById('not_login').style.display = 'none'
+        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+
+    }
+    else
+        document.getElementById('had_login').style.display = 'none'
+
+    document.getElementById("lis").innerHTML = " <div class=\"content2 center\">\n" +
+        "                <div class=\"sub_content fl \">\n" +
+        "                </div>\n" +
+        "                <div class=\"sub_content fl\"><img style='width: 130%;height: 60%;' src=\"" + prime_url + "goods\\" + getCookie('shopId') + ".jpg" + "\"></div>\n" +
+        "                <div class=\"sub_content fl ft20\">" + getCookie('shopName') + "  " + getCookie('shoInfo') + "</div>\n" +
+        "                <div class=\"clear\"></div>\n" +
+        "            </div>\n"
+
+    /**
+     * 提交订单
+     */
+    function submitOrder() {
+        let xmlhttplogin = new XMLHttpRequest();
+        xmlhttplogin.onreadystatechange = function () {
+            if (xmlhttplogin.readyState == 4 && xmlhttplogin.status == 200) {
+                let re = JSON.parse(xmlhttplogin.responseText);
+
+                if (re.success == true) {
+                    console.log(re)
+                    alert("订单提交成功!")
+                    window.location.href='./person_center/hadBuy.html'
+                }
+                else alert('订单提交失败')
+            }
+        }
+        xmlhttplogin.open("GET", prime_url + 'shop/successdeal?shopId='+getCookie('shopId')+"&buyerId="+getCookie('userId'), true);
+        xmlhttplogin.setRequestHeader('Content-Type', 'application/json')
+        xmlhttplogin.send();
+    }
+</script>
+</html>

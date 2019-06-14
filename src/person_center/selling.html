@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="order by dede58.com"/>
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<!-- start header -->
+<header>
+    <div class="top center">
+        <div class="left fl">
+            <ul>
+                <li><a href="../index.html">首页</a></li>
+
+
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="right fr">
+            <div class="gouwuche fr"><a href="./hadBuy.html">我的订单</a></div>
+            <div class="fr">
+                <ul>
+                    <li id="myProfile"></li>
+                    <li><a id="userName" href="../login.html"></a></li>
+                    <li>|</li>
+                    <li><a href="../login.html">注销</a></li>
+                    <li>|</li>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
+<!--end header -->
+<!-- start banner_x -->
+<div class="banner_x center">
+
+    <div class="nav fl">
+        <ul>
+
+        </ul>
+    </div>
+    <div class="search fr">
+        <form action="" method="post">
+            <div class="text fl">
+                <input type="text" class="shuru" placeholder="">
+            </div>
+            <div class="submit fl">
+                <input type="submit" class="sousuo" value="搜索"/>
+            </div>
+            <div class="clear"></div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>
+<!-- end banner_x -->
+<!-- self_info -->
+<div class="grzxbj">
+    <div class="selfinfo center">
+        <div class="lfnav fl">
+            <div class="ddzx">订单中心</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./hadBuy.html">已买的商品</a></li>
+                    <li><a href="./hadSell.html">卖出的商品</a></li>
+                    <li><a href="./selling.html" style="color:#ff6700;font-weight:bold;">正在卖的商品</a></li>
+                    <li><a href="./addGoods.html">新增商品</a></li>
+                </ul>
+            </div>
+            <div class="ddzx">我的足迹</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./collection.html">我的收藏</a></li>
+                </ul>
+                <ul>
+                    <li><a href="./footer.html">我的浏览足迹</a></li>
+                </ul>
+            </div>
+            <div class="ddzx">个人中心</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./self_info.html">我的个人中心</a></li>
+                    <li><a href="./updatePic.html">上传头像</a></li>
+                    <li><a href="../login.html">注销</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="rtcont fr">
+            <div class="rtcont fr">
+                <div class="ddzxbt">正在销售的商品</div>
+                <div id="lis" ></div>
+            </div>
+
+        </div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<footer class="myfooter">
+    <span >copyright @ 2018 online</span>
+</footer>
+</body>
+<script type="text/javascript" src="../js/crabapple.js"></script>
+<script>
+    if (getCookie('userName') != null) {
+        document.getElementById('userName').innerText = getCookie('userName')
+        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+
+    }
+    else
+        window.location.href = '../login.html';
+
+    getGoods()
+    function getGoods() {
+        let xmlhttplogin = new XMLHttpRequest();
+        xmlhttplogin.onreadystatechange = function () {
+            if (xmlhttplogin.readyState == 4 && xmlhttplogin.status == 200) {
+                let re = JSON.parse(xmlhttplogin.responseText);
+
+                if (re.success == true) {
+                    console.log(re)
+                    let content=''
+                    for(i in re.shopList){
+                        let item=re.shopList[i]
+                        console.log(i)
+                        content+=getGoodsList(item.shopId,item.shopName,item.shopInfo,1)
+
+                    }
+
+                    document.getElementById('lis').innerHTML=content
+
+                }
+                else alert(re.errMsg)
+            }
+        }
+        xmlhttplogin.open("GET", prime_url + 'shop/listsellingshopspageinfo?' + 'userId=' + getCookie('userId'), true);
+        xmlhttplogin.setRequestHeader('Content-Type', 'application/json')
+        xmlhttplogin.send();
+    }
+
+</script>
+</html>

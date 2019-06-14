@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="order by dede58.com"/>
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<!-- start header -->
+<header>
+    <div class="top center">
+        <div class="left fl">
+            <ul>
+                <li><a href="../index.html">首页</a></li>
+
+
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="right fr">
+            <div class="gouwuche fr"><a href="./hadBuy.html">我的订单</a></div>
+            <div class="fr">
+                <ul>
+                    <li id="myProfile"></li>
+                    <li><a id="userName" href="../login.html"></a></li>
+                    <li>|</li>
+                    <li><a href="../login.html">注销</a></li>
+                    <li>|</li>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
+<!--end header -->
+<!-- start banner_x -->
+<div class="banner_x center">
+
+    <div class="nav fl">
+        <ul>
+
+        </ul>
+    </div>
+    <div class="search fr">
+        <form action="" method="post">
+            <div class="text fl">
+                <input type="text" class="shuru" placeholder="">
+            </div>
+            <div class="submit fl">
+                <input type="submit" class="sousuo" value="搜索"/>
+            </div>
+            <div class="clear"></div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>
+<!-- end banner_x -->
+<!-- self_info -->
+<div class="grzxbj">
+    <div class="selfinfo center">
+        <div class="lfnav fl">
+            <div class="ddzx">订单中心</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./hadBuy.html">已买的商品</a></li>
+                    <li><a href="./hadSell.html">卖出的商品</a></li>
+                    <li><a href="./selling.html">正在卖的商品</a></li>
+                    <li><a href="./addGoods.html">新增商品</a></li>
+                </ul>
+            </div>
+            <div class="ddzx">我的足迹</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./collection.html">我的收藏</a></li>
+                </ul>
+                <ul>
+                    <li><a href="./footer.html">我的浏览足迹</a></li>
+                </ul>
+            </div>
+            <div class="ddzx">个人中心</div>
+            <div class="subddzx">
+                <ul>
+                    <li><a href="./self_info.html"style="color:#ff6700;font-weight:bold;">我的个人中心</a></li>
+                    <li><a href="./updatePic.html">上传头像</a></li>
+                    <li><a href="../login.html">注销</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="rtcont fr">
+            <div class="ddzxbt">我的资料</div>
+            <div class="subgrzl ml40"><span>用户名</span><span id="v_userName"></span><span><a href="">&nbsp;</a></span></div>
+            <div class="subgrzl ml40"><span>手机号</span><span id="telNumber"></span><span><a href="">&nbsp;</a></span></div>
+            <div class="subgrzl ml40"><span>学号</span><span id="schoolNumber"></span><span><a href="">&nbsp;</a></span></div>
+            <div class="subgrzl ml40"><span>QQ</span><span id="qq"></span><span><a href="">&nbsp;</a></span></div>
+            <div class="subgrzl ml40"><span>个性签名</span><span id="sign"></span><span><a href="">&nbsp;</a></span></div>
+            <div class="subgrzl ml40"><span>投诉</span><span id="prosecutions"></span><span><a href="">&nbsp;</a></span></div>
+
+            <div style=" width:fit-content;padding: 15px;margin: 0px;  margin-left: 40%;background-color: #FF6700;"><a style="  color: white" href="./update_self_info.html">编辑信息</a></div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+
+<!-- self_info -->
+<footer class="myfooter">
+    <span >copyright @ 2018 online</span>
+</footer>
+</body>
+<script type="text/javascript" src="../js/crabapple.js"></script>
+<script>
+    if (getCookie('userName') != null) {
+        document.getElementById('userName').innerText = getCookie('userName')
+        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+
+    }
+    else
+        window.location.href = '../login.html';
+
+
+    document.getElementById('v_userName').innerText=getCookie('userName')
+    document.getElementById('telNumber').innerText=getCookie('telephone')
+    document.getElementById('schoolNumber').innerText=getCookie('schoolNumber')
+    document.getElementById('qq').innerText=getCookie('qq')
+    document.getElementById('sign').innerText=getCookie('introduceMyself')
+    document.getElementById('prosecutions').innerText=getCookie('prosecutions')
+
+    function login() {
+        let schoolNumber = document.getElementById('schoolNumber').value
+        let schoolPassword = document.getElementById('schoolPassword').value
+        let xmlhttplogin = new XMLHttpRequest();
+        xmlhttplogin.onreadystatechange = function () {
+            if (xmlhttplogin.readyState == 4 && xmlhttplogin.status == 200) {
+                let re = JSON.parse(xmlhttplogin.responseText);
+
+                if (re.success == true) {
+                    setCookie('userId', re.user.userId, 1)
+                    setCookie('userImg', re.user.userImg, 1)
+                    setCookie('userName', re.user.userName, 1)
+                    setCookie('qq', re.user.qq, 1)
+                    setCookie('introduceMyself', re.user.introduceMyself, 1)
+                    setCookie('prosecutions', re.user.prosecutions, 1)
+                    setCookie('reputation', re.user.reputation, 1)
+                    setCookie('schoolNumber', re.user.schoolNumber, 1)
+                    setCookie('telephone', re.user.telephone, 1)
+                    window.location.href = 'index.html';
+                }
+                else alert(re.errMsg)
+            }
+        }
+        xmlhttplogin.open("GET", prime_url + 'user/showuserpageinfo?' + 'schoolNumber=' + schoolNumber + '&schoolPassword=' + schoolPassword, true);
+        xmlhttplogin.setRequestHeader('Content-Type', 'application/json')
+        // xmlhttplogin.send(JSON.stringify({"day": req_day, "offset": req_offset}));
+        xmlhttplogin.send();
+    }
+
+</script>
+</html>
