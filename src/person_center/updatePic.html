@@ -25,7 +25,7 @@
                     <li id="myProfile"></li>
                     <li><a id="userName" href="../login.html"></a></li>
                     <li>|</li>
-                    <li><a href="../login.html">注销</a></li>
+                    <li><a onclick="logout()">注销</a></li>
                     <li>|</li>
 
                 </ul>
@@ -73,7 +73,7 @@
             <div class="ddzx">我的足迹</div>
             <div class="subddzx">
                 <ul>
-                    <li><a href="./collection.html" style="color:#ff6700;font-weight:bold;">我的收藏</a></li>
+                    <li><a href="./collection.html">我的收藏</a></li>
                 </ul>
                 <ul>
                     <li><a href="./footer.html">浏览足迹</a></li>
@@ -96,7 +96,7 @@
                       enctype="multipart/form-data" name="upload_form" onsubmit="return saveReport()">
                     <div>
                         选择图片:
-                        <input id="shopImg" type="file" name="file" accept="image/jpeg" onchange="changeImg()"/></br></br>
+                        <input id="shopImg" type="file" name="file" accept="image/jpeg" onchange="changeImg(this)"/></br></br>
                         <input id="form_userId" style="display: none" type="text" name="userId"/>
                         <input type="submit" value="提交"/></br></br></br></br>
                         <!--<a style="color: white ; width:200px;padding: 15px;padding-left:50px;padding-right:50px;margin: 0px;background-color: #FF6700;" href="../dingdanzhongxin.html">提交</a>-->
@@ -135,15 +135,7 @@
         return false;
     }
 
-    function changeImg() {
-        console.log(123)
-        const imgFile = document.getElementById('shopImg');
-        const lastName = imgFile.value.split(".")[1]
-        if(lastName != 'jpg'){
-            imgFile.value = '';
-            alert('格式必须是JPG文件');
-        }
-    }
+
 
 </script>
 </html>

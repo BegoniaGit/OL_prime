@@ -207,7 +207,16 @@ function todetailPage(item){
 
 
 function logout() {
+    console.log("logout")
     clearAllCookie();
     window.location.reload()
     // window.location.href = "./login.html";
+}
+
+function changeImg(imgFile) {
+    const lastName = imgFile.value.split(".")[1]
+    if(lastName != 'jpg'){
+        imgFile.value = '';
+        alert('格式必须是JPG文件');
+    }
 }
