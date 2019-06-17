@@ -15,8 +15,6 @@
         <div class="left fl">
             <ul>
                 <li><a href="../index.html">首页</a></li>
-
-
                 <div class="clear"></div>
             </ul>
         </div>
@@ -40,7 +38,6 @@
 <!--end header -->
 <!-- start banner_x -->
 <div class="banner_x center">
-
     <div class="nav fl">
         <ul>
 
@@ -76,7 +73,7 @@
             <div class="ddzx">我的足迹</div>
             <div class="subddzx">
                 <ul>
-                    <li><a href="./collection.html"style="color:#ff6700;font-weight:bold;">我的收藏</a></li>
+                    <li><a href="./collection.html" style="color:#ff6700;font-weight:bold;">我的收藏</a></li>
                 </ul>
                 <ul>
                     <li><a href="./footer.html">浏览足迹</a></li>
@@ -95,46 +92,57 @@
             <div class="ddzxbt">修改我的头像</div>
             <div style="height: 170px; text-align: center;vertical-align: middle; font-family: 微软雅黑;color: #747474;font-size: 18px;">
                 </br>
-                <form id="myform" action="http://127.0.0.1:8080/online/user/uploadprofile" method="post" enctype="multipart/form-data" name="upload_form" onsubmit="return saveReport()">
-
-                <div >选择图片:&nbsp;&nbsp;<input id="shopImg"  type="file" name="file"/></br></br></br></br>
-                <input id="form_userId" style="display: none"  type="text" name="userId"/>
-               <input   type="submit" value="提交"/></br></br></br></br>
-                    <!--<a style="color: white ; width:200px;padding: 15px;padding-left:50px;padding-right:50px;margin: 0px;background-color: #FF6700;" href="../dingdanzhongxin.html">提交</a>-->
-                </div>
+                <form id="myform" action="http://127.0.0.1:8080/online/user/uploadprofile" method="post"
+                      enctype="multipart/form-data" name="upload_form" onsubmit="return saveReport()">
+                    <div>
+                        选择图片:
+                        <input id="shopImg" type="file" name="file" accept="image/jpeg" onchange="changeImg()"/></br></br>
+                        <input id="form_userId" style="display: none" type="text" name="userId"/>
+                        <input type="submit" value="提交"/></br></br></br></br>
+                        <!--<a style="color: white ; width:200px;padding: 15px;padding-left:50px;padding-right:50px;margin: 0px;background-color: #FF6700;" href="../dingdanzhongxin.html">提交</a>-->
+                    </div>
                 </form>
             </div>
-          </div>
-
         </div>
-        <div class="clear"></div>
     </div>
+    <div class="clear"></div>
+</div>
 </div>
 
 <!-- self_info -->
 <footer class="myfooter">
-    <span >copyright @ 2018 online</span>
+    <span>copyright @ 2018 online</span>
 </footer>
 </body>
 <script type="text/javascript" src="../js/crabapple.js"></script>
 <script>
     if (getCookie('userName') != null) {
         document.getElementById('userName').innerText = getCookie('userName')
-        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+        document.getElementById("myProfile").innerHTML = "<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\"" + prime_url + "profile\\" + getCookie('userId') + ".jpg" + "\">"
 
-    }
-    else
+    } else
         window.location.href = '../login.html';
-    document.getElementById("myform").action=prime_url+'user/uploadprofile'
+    document.getElementById("myform").action = prime_url + 'user/uploadprofile'
 
-    document.getElementById('form_userId').value=getCookie('userId');
-    console.log(document.getElementById('sellerId').value)
+    document.getElementById('form_userId').value = getCookie('userId');
+    // console.log(document.getElementById('sellerId').value)
+
     function saveReport() {
-        $("#myform").ajaxSubmit(function(message) {
+        $("#myform").ajaxSubmit(function (message) {
             console.log(message)
-            window.location.href='./self_info.html'
+            window.location.href = './self_info.html'
         });
         return false;
+    }
+
+    function changeImg() {
+        console.log(123)
+        const imgFile = document.getElementById('shopImg');
+        const lastName = imgFile.value.split(".")[1]
+        if(lastName != 'jpg'){
+            imgFile.value = '';
+            alert('格式必须是JPG文件');
+        }
     }
 
 </script>

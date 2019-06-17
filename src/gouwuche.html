@@ -20,9 +20,9 @@
             <div class="gouwuche fr"><a href="./person_center/self_info.html">个人中心</a></div>
             <div class="fr">
                 <ul>
-                    <li><a href="./login.html" target="_blank">登录</a></li>
+                    <li><a href="./login.html" >登录</a></li>
                     <li>|</li>
-                    <li><a href="./register.html" target="_blank">注册</a></li>
+                    <li><a href="./register.html" >注册</a></li>
 
                 </ul>
             </div>
@@ -33,9 +33,9 @@
             <div class="fr">
                 <ul>
                     <li id="myProfile"></li>
-                    <li><a id='userName' href="./person_center/self_info.html" target="_blank"></a></li>
+                    <li><a id='userName' href="./person_center/self_info.html" ></a></li>
                     <li>|</li>
-                    <li><a href="./login.html" target="_blank">注销</a></li>
+                    <li><a href="./login.html" >注销</a></li>
 
                 </ul>
             </div>
@@ -83,7 +83,8 @@
             </ul>
         </div>
         <div class="jiesuan fr">
-            <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan" onclick="submitOrder()" value="确认购买"/></div>
+            <div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan" onclick="submitOrder()"
+                                           value="确认购买"/></div>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
@@ -103,10 +104,9 @@
     if (getCookie('userId') != null) {
         document.getElementById('userName').innerText = getCookie('userName')
         document.getElementById('not_login').style.display = 'none'
-        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+        document.getElementById("myProfile").innerHTML = "<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\"" + prime_url + "profile\\" + getCookie('userId') + ".jpg" + "\">"
 
-    }
-    else
+    } else
         document.getElementById('had_login').style.display = 'none'
 
     document.getElementById("lis").innerHTML = " <div class=\"content2 center\">\n" +
@@ -129,12 +129,11 @@
                 if (re.success == true) {
                     console.log(re)
                     alert("订单提交成功!")
-                    window.location.href='./person_center/hadBuy.html'
-                }
-                else alert('订单提交失败')
+                    window.location.href = './person_center/hadBuy.html'
+                } else alert('订单提交失败')
             }
         }
-        xmlhttplogin.open("GET", prime_url + 'shop/successdeal?shopId='+getCookie('shopId')+"&buyerId="+getCookie('userId'), true);
+        xmlhttplogin.open("GET", prime_url + 'shop/successdeal?shopId=' + getCookie('shopId') + "&buyerId=" + getCookie('userId'), true);
         xmlhttplogin.setRequestHeader('Content-Type', 'application/json')
         xmlhttplogin.send();
     }

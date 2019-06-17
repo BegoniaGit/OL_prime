@@ -22,9 +22,9 @@
             <div class="gouwuche fr"><a href="./person_center/self_info.html">个人中心</a></div>
             <div class="fr">
                 <ul>
-                    <li><a href="./login.html" target="_blank">登录</a></li>
+                    <li><a href="./login.html">登录</a></li>
                     <li>|</li>
-                    <li><a href="./register.html" target="_blank">注册</a></li>
+                    <li><a href="./register.html">注册</a></li>
 
                 </ul>
             </div>
@@ -35,10 +35,9 @@
             <div class="fr">
                 <ul>
                     <li id="myProfile"></li>
-                    <li><a id='userName' href="./person_center/self_info.html" target="_blank"></a></li>
+                    <li><a id='userName' href="./person_center/self_info.html" ></a></li>
                     <li>|</li>
-                    <li><a href="./login.html" target="_blank">注销</a></li>
-
+                    <li><a href="./login.html" >注销</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -46,9 +45,9 @@
         <div class="clear"></div>
     </div>
 </header>
-<div class="danpin center"style="margin-top: 0px">
+<div class="danpin center" style="margin-top: 0px">
 
-    <div class="biaoti center"style="margin-top: 0px">onLine校园购物平台</div>
+    <div class="biaoti center" style="margin-top: 0px">onLine校园购物平台</div>
     <div id="lis">
     </div>
 </div>
@@ -63,10 +62,9 @@
     if (getCookie('userId') != null) {
         document.getElementById('userName').innerText = getCookie('userName')
         document.getElementById('not_login').style.display = 'none'
-        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+        document.getElementById("myProfile").innerHTML = "<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\"" + prime_url + "profile\\" + getCookie('userId') + ".jpg" + "\">"
 
-    }
-    else
+    } else
         document.getElementById('had_login').style.display = 'none'
 
     let shopId
@@ -83,14 +81,13 @@
                     console.log(re)
                     let content = ''
                     let item = re.shopList[0]
-                    setCookie('sellerId',item.sellerId,1)
+                    setCookie('sellerId', item.sellerId, 1)
                     content += getDetailGoods(item.shopId, item.shopName, item.shopInfo)
                     shopId = item.shopId
                     upHistory()
                     document.getElementById('lis').innerHTML = content
 
-                }
-                else alert(re.errMsg)
+                } else alert(re.errMsg)
             }
         }
         xmlhttplogin.open("GET", prime_url + 'shop/listshopspageinfo?shopName=' + getCookie('shopName'), true);
@@ -107,12 +104,10 @@
         xmlhttphis.onreadystatechange = function () {
             if (xmlhttphis.readyState == 4 && xmlhttphis.status == 200) {
                 let re = JSON.parse(xmlhttphis.responseText);
-                if (re.success == true)
-                {
+                if (re.success == true) {
                     console.log("添加历史记录成功")
                     console.log(re)
-                }
-                else alert(re.errMsg)
+                } else alert(re.errMsg)
             }
         }
         xmlhttphis.open("GET", prime_url + 'history/addshopinfotohistory?shopId=' + 8 + "&userId=" + getCookie('userId'), true);

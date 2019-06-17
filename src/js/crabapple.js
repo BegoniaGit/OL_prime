@@ -11,8 +11,7 @@ prime_url='http://www.yanyan.site:8080/online/'
  * @returns {string}
  */
 function getCookie(objName) {//获取指定名称的cookie的值
-
-   return window.localStorage[objName]
+    return window.localStorage[objName]
 
 }
 
@@ -30,13 +29,13 @@ function setCookie(c_name,value,expiredays){
  * 删除cookie
  * @param name
  */
-function delCookie(name)
-{
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1);
-    var cval=getCookie(name);
-    if(cval!=null)
-        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+function delCookie(name) {
+    localStorage.removeItem(name)
+    // var exp = new Date();
+    // exp.setTime(exp.getTime() - 1);
+    // var cval=getCookie(name);
+    // if(cval!=null)
+    //     document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
 
 
@@ -44,12 +43,14 @@ function delCookie(name)
  *清除所有cookie函数
  */
 function clearAllCookie() {
-    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-    if(keys) {
-        for(var i = keys.length; i--;)
-            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
-    }
-
+    localStorage.clear()
+    // console.log(document.cookie)
+    // var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    // console.log(keys)
+    // if(keys) {
+    //     for(var i = keys.length; i--;)
+    //         document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    // }
 }
 
 function getGoodsList(orderId,shopName,shopInfo,del){
@@ -202,4 +203,11 @@ function delItem(id,choice){
 function todetailPage(item){
     setCookie('shopName',item,1)
     window.location.href='../xiangqing.html'
+}
+
+
+function logout() {
+    clearAllCookie();
+    window.location.reload()
+    // window.location.href = "./login.html";
 }

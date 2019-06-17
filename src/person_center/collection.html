@@ -65,7 +65,7 @@
             <div class="ddzx">订单中心</div>
             <div class="subddzx">
                 <ul>
-                    <li><a href="./hadBuy.html" >已买的商品</a></li>
+                    <li><a href="./hadBuy.html">已买的商品</a></li>
                     <li><a href="./hadSell.html">卖出的商品</a></li>
                     <li><a href="./selling.html">正在卖的商品</a></li>
                     <li><a href="./addGoods.html">新增商品</a></li>
@@ -74,7 +74,7 @@
             <div class="ddzx">我的足迹</div>
             <div class="subddzx">
                 <ul>
-                    <li><a href="./collection.html"style="color:#ff6700;font-weight:bold;">我的收藏</a></li>
+                    <li><a href="./collection.html" style="color:#ff6700;font-weight:bold;">我的收藏</a></li>
                 </ul>
                 <ul>
                     <li><a href="./footer.html">我的浏览足迹</a></li>
@@ -89,34 +89,34 @@
                 </ul>
             </div>
         </div>
-            <div class="rtcont fr">
-                <div class="ddzxbt">我的收藏</div>
-                <div id="lis"></div>
-            </div>
-
+        <div class="rtcont fr">
+            <div class="ddzxbt">我的收藏</div>
+            <div id="lis"></div>
         </div>
-        <div class="clear"></div>
+
     </div>
+    <div class="clear"></div>
+</div>
 </div>
 
 <!-- self_info -->
 
 <footer class="myfooter">
-    <span >copyright @ 2018 online</span>
+    <span>copyright @ 2018 online</span>
 </footer>
 </body>
 <script type="text/javascript" src="../js/crabapple.js"></script>
 <script>
     if (getCookie('userName') != null) {
         document.getElementById('userName').innerText = getCookie('userName')
-        document.getElementById("myProfile").innerHTML="<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\""+prime_url+"profile\\"+getCookie('userId')+".jpg"+"\">"
+        document.getElementById("myProfile").innerHTML = "<img style='width: 25px;height: 25px;border-radius:25px;vertical-align: middle;' src=\"" + prime_url + "profile\\" + getCookie('userId') + ".jpg" + "\">"
 
-    }
-    else
+    } else
         window.location.href = '../login.html';
 
 
     getGoods()
+
     function getGoods() {
         let xmlhttplogin = new XMLHttpRequest();
         xmlhttplogin.onreadystatechange = function () {
@@ -125,18 +125,17 @@
 
                 if (re.success == true) {
                     console.log(re)
-                    let content=''
-                    for(i in re.shopList){
-                        let item=re.shopList[i]
+                    let content = ''
+                    for (i in re.shopList) {
+                        let item = re.shopList[i]
                         console.log(i)
-                        content+=getGoodsList(item.shopId,item.shopName,item.shopInfo,2)
+                        content += getGoodsList(item.shopId, item.shopName, item.shopInfo, 2)
 
                     }
 
-                    document.getElementById('lis').innerHTML=content
+                    document.getElementById('lis').innerHTML = content
 
-                }
-                else alert(re.errMsg)
+                } else alert(re.errMsg)
             }
         }
         xmlhttplogin.open("GET", prime_url + 'history/collectedlistpageinfo?' + 'userId=' + getCookie('userId'), true);
