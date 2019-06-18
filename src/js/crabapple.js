@@ -1,8 +1,8 @@
 
 // 定义全局变量
 
-prime_url='http://www.yanyan.site:8080/online/'
-// prime_url='http://127.0.0.1:8080/online/'
+// prime_url='http://www.yanyan.site:8080/online/'
+prime_url='http://127.0.0.1:8080/online/'
 
 
 /**

@@ -110,7 +110,7 @@
                 } else alert(re.errMsg)
             }
         }
-        xmlhttphis.open("GET", prime_url + 'history/addshopinfotohistory?shopId=' + 8 + "&userId=" + getCookie('userId'), true);
+        xmlhttphis.open("GET", prime_url + 'history/addshopinfotohistory?shopId=' + shopId + "&userId=" + getCookie('userId'), true);
         xmlhttphis.setRequestHeader('Content-Type', 'application/json')
         xmlhttphis.send();
     }
