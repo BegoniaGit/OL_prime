@@ -109,7 +109,7 @@ function getDetailGoods(orderId,shopName,shopInfo){
         "                        <input class=\"jrgwc\" type=\"button\" name=\"jrgwc\" onclick=\'addToCollection("+orderId+")\' value=\"加入收藏夹\">\n" +
         "\n" +
         "                    </div>\n" +
-        "  <div onclick='toSellerCenter()'  style='cursor:pointer;margin-top:20px;vertical-align:middle '><a  style='padding-left: 20px;    font-size: 14px;color: #a2a2a8 ;'>卖家中心&nbsp;&nbsp;&nbsp;</a><img  style='vertical-align:middle;width: 50px;height: 50px;border-radius:50px' src=\""+prime_url+"profile\\"+orderId+".jpg\"></div>"+
+        "  <div onclick='toSellerCenter()'  style='cursor:pointer;margin-top:20px;vertical-align:middle '><a  style='padding-left: 20px;    font-size: 14px;color: #a2a2a8 ;'>卖家中心&nbsp;&nbsp;&nbsp;</a><img  style='vertical-align:middle;width: 50px;height: 50px;border-radius:50px' src=\""+prime_url+"profile\\"+getCookie('sellerId')+".jpg\"></div>"+
     "                </div>\n" +
         "                <div class=\"clear\"></div>\n" +
         "            </div>\n" +
