@@ -54,21 +54,20 @@ function clearAllCookie() {
 }
 
 function getGoodsList(orderId,shopName,shopInfo,del){
-
    return "<div class=\"ddxq\">\n" +
-    "                    <div onclick=\"todetailPage(\'"+shopName+"\')\" class=\"ddspt fl\"><img style='height: 100%;width: 100%' src=\""+prime_url+"goods\\"+orderId+".jpg"+"\" alt=\"\"></div>\n" +
-    "                    <div class=\"ddbh fl\"><a>商品号:</a><a>"+orderId+"</a></div>\n" +
-    "                    <div class=\"ztxx fr\" style='cursor: pointer'>\n" +
-    "                        <ul>\n" +
-    "                           \n" +
-    "                            <li>"+shopName+"</li>\n" +
-    "                            <li>"+shopInfo+"</li>\n" +
-    "                            <li><a onclick='delItem("+orderId+","+del+")'>删除</a></li>\n" +
-    "                            <div class=\"clear\"></div>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"clear\"></div>\n" +
-    "                </div>"
+    "<div onclick=\"todetailPage(\'"+shopName+"\')\" class=\"ddspt fl\"><img style='height: 100%;width: 100%' src=\""+prime_url+"goods\\"+orderId+".jpg"+"\" alt=\"\"></div>\n" +
+    "<div class=\"ddbh fl\"><a>商品号:</a><a>"+orderId+"</a></div>\n" +
+    "<div class=\"ztxx fr\" style='cursor: pointer'>\n" +
+    "<ul>\n" +
+    " \n" +
+    "<li>"+shopName+"</li>\n" +
+    "<li>"+shopInfo+"</li>\n" +
+    "<li><a onclick='delItem("+orderId+","+del+")'>删除</a></li>\n" +
+    "<div class=\"clear\"></div>\n" +
+    "</ul>\n" +
+    "</div>\n" +
+    "<div class=\"clear\"></div>\n" +
+    "</div>"
 }
 
 function getIndexGoods(orderId,shopName,shopInfo){
@@ -168,19 +167,22 @@ function toConvert(miles){
 }
 
 function delItem(id,choice){
+    console.log(id,choice)
     let url=prime_url
     if(choice==1)
+        // 正在卖的
         url+='shop/delshop?sellerId='+getCookie('userId')+"&shopId="+id;
     else if(choice==2)
+        // 我的收藏
         url+='history/deletefromcollectedlist?userId='+getCookie('userId')+'&shopId='+id;
     else if(choice==3)
+        // 浏览记录
         url+='history/deleteshopinfofromhistory?userId='+getCookie('userId')+'&shopId='+id;
 
     let xmlhttplogin = new XMLHttpRequest();
     xmlhttplogin.onreadystatechange = function () {
         if (xmlhttplogin.readyState == 4 && xmlhttplogin.status == 200) {
             let re = JSON.parse(xmlhttplogin.responseText);
-
             if (re.success == true) {
                 console.log(re)
                 if(choice==1)
