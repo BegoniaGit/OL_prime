@@ -24,14 +24,14 @@
                                                                                  placeholder="请输入你的用户名"/><span></span>
             </div>
             <div class="username">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:&nbsp;&nbsp;<input
-                    id="telphone" class="shurukuang" type="text" name="username" placeholder="请输入你的学号"/><span></span>
+                    id="telephone" class="shurukuang" type="text" name="username" placeholder="请输入你的电话"/><span></span>
             </div>
             <div class="username">签&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;<input
                     id="sign" class="shurukuang" type="text" name="password"
                     placeholder="输入签名"/><span></span></div>
-            <div class="username">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q:&nbsp;&nbsp;<input
+            <div class="username">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q:&nbsp;&nbsp;<input
                     id="qq" class="shurukuang" type="text" name="password"
-                    placeholder="输入新qq"/><span></span></div>
+                    placeholder="请输入你的QQ号码"/><span></span></div>
 
 
         </div>
@@ -47,10 +47,14 @@
 <script>
     function register() {
         let userName = document.getElementById('userName').value
-        let telphone = document.getElementById('telphone').value
+        let telephone = document.getElementById('telephone').value
         let sign = document.getElementById('sign').value
         let qq = document.getElementById('qq').value
         console.log(userName)
+        setCookie("qq",qq)
+        setCookie("introduceMyself",sign)
+        setCookie("telephone",telephone)
+        setCookie("userName",userName)
 
         let xmlhttpregister = new XMLHttpRequest();
         xmlhttpregister.onreadystatechange = function () {
@@ -59,11 +63,11 @@
                 console.log(re)
                 if (re.success == true) {
                     alert("信息修改成功!")
-                    window.location.href = '../index.html';
+                    window.location.href = './self_info.html';
                 } else alert(re.errMsg)
             }
         }
-        xmlhttpregister.open("GET", prime_url + 'user/updateuserpageinfo?' + 'userName=' + userName + '&telephone=' + telphone + '&introduceMyself=' + sign +
+        xmlhttpregister.open("GET", prime_url + 'user/updateuserpageinfo?' + 'userName=' + userName + '&telephone=' + telephone + '&introduceMyself=' + sign +
             "&qq=" + qq + "&userId=" + getCookie('userId'), true);
         xmlhttpregister.setRequestHeader('Content-Type', 'application/json')
         xmlhttpregister.send();

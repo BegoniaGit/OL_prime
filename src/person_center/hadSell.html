@@ -125,6 +125,7 @@
                 if (re.success == true) {
                     console.log(re)
                     let content = ''
+                    content += takeFormHeader(0);
                     for (i in re.shopList) {
                         let item = re.shopList[i]
                         console.log(i)

@@ -13,8 +13,6 @@
         <div class="left fl">
             <ul>
                 <li><a href="../index.html">首页</a></li>
-
-
                 <div class="clear"></div>
             </ul>
         </div>
@@ -125,7 +123,10 @@
 
                 if (re.success == true) {
                     console.log(re)
+                    re.shopList.shift()
+                    console.log(re)
                     let content = ''
+                    content += takeFormHeader(1);
                     for (i in re.shopList) {
                         let item = re.shopList[i]
                         console.log(i)

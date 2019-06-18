@@ -113,10 +113,11 @@
                 if (re.success == true) {
                     console.log(re)
                     let content = ''
+                    content += takeFormHeader(0);
                     for (i in re.shopList) {
                         let item = re.shopList[i]
                         console.log(i)
-                        content += getGoodsList(item.shopId, item.shopName, item.shopInfo, 1)
+                        content += getGoodsList(item.shopId, item.shopName, item.shopInfo)
 
                     }
 

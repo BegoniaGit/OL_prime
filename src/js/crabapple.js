@@ -1,8 +1,8 @@
 
 // 定义全局变量
 
-// prime_url='http://www.yanyan.site:8080/online/'
-prime_url='http://127.0.0.1:8080/online/'
+prime_url='http://www.yanyan.site:8080/online/'
+// prime_url='http://127.0.0.1:8080/online/'
 
 
 /**
@@ -19,9 +19,8 @@ function getCookie(objName) {//获取指定名称的cookie的值
  * 设置cookie
  * @param c_name
  * @param value
- * @param expiredays
  */
-function setCookie(c_name,value,expiredays){
+function setCookie(c_name,value){
    window.localStorage[c_name]=value
 }
 
@@ -53,21 +52,44 @@ function clearAllCookie() {
     // }
 }
 
+function takeFormHeader(flag) {
+    let content = "<div class=\"ddxq\">\n" +
+        "<div class=\"ddspt fl\" style='border:0px'></div>\n" +
+        "<div class=\"ddbh fl\"><a>"+"商品号"+"</a></div>\n" +
+        "<div class=\"ztxx fr\" style='cursor: pointer'>\n" +
+        "<ul>\n" +
+        " \n" +
+        "<li>"+"名称"+"</li>\n" +
+        "<li>"+"详细信息"+"</li>\n";
+    if(flag == 1){
+        content += "<li><a>操作</a></li>\n";
+    }
+    content += "<div class=\"clear\"></div>\n" +
+        "</ul>\n" +
+        "</div>\n" +
+        "<div class=\"clear\"></div>\n" +
+        "</div>";
+    return  content
+}
+
 function getGoodsList(orderId,shopName,shopInfo,del){
-   return "<div class=\"ddxq\">\n" +
-    "<div onclick=\"todetailPage(\'"+shopName+"\')\" class=\"ddspt fl\"><img style='height: 100%;width: 100%' src=\""+prime_url+"goods\\"+orderId+".jpg"+"\" alt=\"\"></div>\n" +
-    "<div class=\"ddbh fl\"><a>商品号:</a><a>"+orderId+"</a></div>\n" +
-    "<div class=\"ztxx fr\" style='cursor: pointer'>\n" +
-    "<ul>\n" +
-    " \n" +
-    "<li>"+shopName+"</li>\n" +
-    "<li>"+shopInfo+"</li>\n" +
-    "<li><a onclick='delItem("+orderId+","+del+")'>删除</a></li>\n" +
-    "<div class=\"clear\"></div>\n" +
-    "</ul>\n" +
-    "</div>\n" +
-    "<div class=\"clear\"></div>\n" +
-    "</div>"
+    let content = "<div class=\"ddxq\">\n" +
+        "<div onclick=\"todetailPage(\'"+shopName+"\')\" class=\"ddspt fl\"><img style='height: 100%;width: 100%' src=\""+prime_url+"goods\\"+orderId+".jpg"+"\" alt=\"\"></div>\n" +
+        "<div class=\"ddbh fl\"><a>"+orderId+"</a></div>\n" +
+        "<div class=\"ztxx fr\" style='cursor: pointer'>\n" +
+        "<ul>\n" +
+        " \n" +
+        "<li>"+shopName+"</li>\n" +
+        "<li>"+shopInfo+"</li>\n";
+    if(del){
+        content += "<li><a onclick='delItem("+orderId+","+del+")'>删除</a></li>\n";
+    }
+        content += "<div class=\"clear\"></div>\n" +
+        "</ul>\n" +
+        "</div>\n" +
+        "<div class=\"clear\"></div>\n" +
+        "</div>";
+    return  content
 }
 
 function getIndexGoods(orderId,shopName,shopInfo){
