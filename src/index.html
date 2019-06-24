@@ -75,7 +75,7 @@
 </div>
 
 <footer class="myfooter">
-    <span>copyright @ 2018 online</span>
+    <span>copyright @ 2019 online</span>
 </footer>
 </body>
 
@@ -97,7 +97,6 @@
         xmlhttplogin.onreadystatechange = function () {
             if (xmlhttplogin.readyState == 4 && xmlhttplogin.status == 200) {
                 let re = JSON.parse(xmlhttplogin.responseText);
-
                 if (re.success == true) {
                     console.log(re)
                     let content = ''
